@@ -1,0 +1,22 @@
+Analytics/Visualization pipeline:
+
+S3 per customer - contains processed data in folders per product/feature
+??? Glue for duplicate and redundant column removal 
+Athena Views for loading hdfs files into quicksight
+QuickSight queries through Athena
+
+
+Steps for Analytics/Visualization 
+S3:
+Have list of buckets for processed customer tweets
+Create a single bucket to hold Athena query results stored as csv + metadata. 
+Athena:
+Set the primary (or other) workgroup output to proper S3 bucket (the one we created)
+Create the main data table (and database if necessary) through SQL
+QuickSight:
+Create dataset from the corresponding table (select to use SPICE)
+Create dashboards
+
+Notes:
+Lifecycle rules can limit how long the data query exists until it is deleted.
+Anytime QuickSight filters data, that is considered a query. Those queries can probably be systematically stored and kept for additional analysis for trends over time. We can potentially  store them and mention this idea in the final report/presentation.
